@@ -22,12 +22,17 @@ function App() {
 
   async function handleAddRepository() {
     const res = await api.post('/repositories', {
-      title, url, techs
+      title,
+      url,
+      techs
     });
 
     const repositorio = res.data;
 
     setRepositorios([...repositorios, repositorio])
+    setTechs('')
+    setTitle('')
+    setUrl('')
   }
 
   async function handleRemoveRepository(id) {
@@ -39,8 +44,7 @@ function App() {
   return (
     <div>
       <ul data-testid="repository-list">
-        {repositorios && repositorios.map(repositorio => (
-          
+        {repositorios && repositorios.map(repositorio => (   
           <li key={repositorio.id}>
             {repositorio.title}
 
@@ -48,8 +52,6 @@ function App() {
               Remover
             </button>
           </li>
-
-
         ))}
       </ul>
       
